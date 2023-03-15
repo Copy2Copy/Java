@@ -1,6 +1,4 @@
-//MULTI THREADING
-
-package com.example.ca2;
+//MULTI THREADING WITH INTERFACE
 
 public class multithreading_inter {
     public static void main(String args[]){
@@ -38,7 +36,6 @@ public class multithreading_inter {
 
 //MULTI THREADING ABSTRACT CLASS
 
-package com.example.ca2;
 
 class MyThread extends Thread {
     String name = "";
@@ -67,3 +64,58 @@ public class multithreading_abstract_class {
         t2.start();
     }
 }
+
+//MAIN THREAD
+
+class CurrentThreadDemo {
+    public static void main(String args[]) {
+        Thread t = Thread.currentThread();
+        System.out.println("Current thread: " + t);
+        t.setName("My Thread");
+        System.out.println("After name change: " + t);
+        try {
+            for(int n = 5; n > 0; n--) {
+                System.out.println(n);
+                Thread.sleep(1000);
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Main thread interrupted");
+        }
+    }
+}
+
+//THREAD CLASS
+
+public class ExtendThread {
+    public static void main(String args[]) {
+        new NewThread();
+        try {
+            for(int i = 5; i > 0; i--) {
+                System.out.println("Main Thread: " + i);
+                Thread.sleep(1000);
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Main thread interrupted.");
+        }
+        System.out.println("Main thread exiting.");
+    }
+}
+class NewThread extends Thread {
+    NewThread() {
+        super("Demo Thread");
+        System.out.println("Child thread: " + this);
+        start();
+    }
+    public void run() {
+        try {
+            for(int i = 5; i > 0; i--) {
+                System.out.println("Child Thread: " + i);
+                Thread.sleep(500);
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Child interrupted.");
+        }
+        System.out.println("Exiting child thread.");
+    }
+}
+
